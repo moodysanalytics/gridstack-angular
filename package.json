@@ -1,10 +1,10 @@
 {
-  "name": "gridstack-angular",
+  "name": "@moodysanalytics/gridstack-angular",
   "version": "0.6.0-dev",
   "description": "Angular Gridstack.js directive",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kdietrich/gridstack-angular.git"
+    "url": "git://github.com/moodysanalytics/gridstack-angular.git"
   },
   "devDependencies": {
     "gulp-eslint": "^6.0.0",
@@ -18,8 +18,11 @@
   "author": "Kevin Dietrich",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kdietrich/gridstack-angular/issues"
+    "url": "https://github.com/moodysanalytics/gridstack-angular/issues"
   },
-  "homepage": "https://github.com/kdietrich/gridstack-angular#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/moodysanalytics/gridstack-angular",
+  "dependencies": {},
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
