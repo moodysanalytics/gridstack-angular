@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
 var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
+var eslint = require('gulp-eslint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var header = require('gulp-header');
@@ -28,18 +28,18 @@ var banner = ['/**',
   ''].join('\n');
 
 // Delete the dist directory
-gulp.task('clean', function() {
- return gulp.src(bases.dist)
+gulp.task('clean', function () {
+    return gulp.src(bases.dist, { allowEmpty: true })
  .pipe(clean());
 });
 
 // Process scripts and concatenate them into one output file
-gulp.task('scripts', ['clean'], function() {
+gulp.task('scripts', async function() {
  gulp.src(paths.scripts, {cwd: bases.app})
  .pipe(jshint())
  .pipe(jshint.reporter('default'))
- .pipe(jscs())
- .pipe(jscs.reporter())
+ .pipe(eslint())
+ .pipe(eslint.format())
  .pipe(uglify())
  .pipe(concat('gridstack-angular.min.js'))
  .pipe(header(banner, { pkg : pkg } ))
@@ -52,4 +52,4 @@ gulp.task('scripts', ['clean'], function() {
 });
 
 // Define the default task as a sequence of the above tasks
-gulp.task('default', ['clean', 'scripts']);
+gulp.task('default', gulp.series('clean', gulp.parallel('scripts')));
